@@ -1,0 +1,64 @@
+/* videoslider.css */
+
+.video_container {
+width: 100%;
+text-align: center;
+padding: 3vw 0;
+background: #fffafc;
+}
+
+.video_container h2 {
+font-size: 2vw;
+margin-bottom: 2.1em;
+color: #333;
+letter-spacing: 1px;
+}
+
+
+.video_section_flex {
+display: flex;
+justify-content: center;
+align-items: center;
+flex-wrap: wrap;
+gap: 2vw;
+padding: 0 2vw;
+}
+
+.video_section_flex img {
+width: 22vw;
+height: 22vw;
+object-fit: cover;
+border-radius: 1vw;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+cursor: pointer;
+}
+
+.video_section_flex img:hover {
+transform: scale(1.05);
+box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+.video_container h2 {
+font-size: 4vw;
+}
+
+.video_section_flex img {
+width: 40vw;
+height: 40vw;
+}
+}
+
+@media (max-width: 480px) {
+.video_section_flex {
+gap: 4vw;
+}
+
+.video_section_flex img {
+width: 80vw;
+height: 80vw;
+}
+
+}
