@@ -11,7 +11,7 @@ useEffect(() => {
 const fetchData = async () => {
 
 try {
-const response = await fetch("https://lavonne-0729.onrender.com/fetchCutomerOrder");
+const response = await fetch("https://antara-gug4.onrender.com/fetchCutomerOrder");
 const data = await response.json();
 
 if (!data.products || !Array.isArray(data.products)) {
