@@ -28,7 +28,7 @@ const [message, setMessage] = useState("");
 
 
 useEffect(() => {
-fetch(`http://localhost:3001/products/${id}`)
+fetch(`https://antara-gug4.onrender.com/products/${id}`)
 .then(res => res.json())
 .then(data => {
 });
@@ -39,7 +39,7 @@ useEffect(() => {
 const fetchProduct = async () => {
 try {
 const response = await axios.get(
-"http://localhost:3001/fetchProductslist"
+"https://antara-gug4.onrender.com/fetchProductslist"
 );
 const data = response.data;
 const product = data.find((product) => product.id === parseInt(id));
@@ -168,7 +168,7 @@ content="https://yourdomain.com/images/pickle-default.jpg"
 
 <img
 className="product_img"
-src={`http://localhost:3001${arrayStore.file_path}`}
+src={`https://antara-gug4.onrender.com${arrayStore.file_path}`}
 alt=''
 loading="lazy"
 />
@@ -177,7 +177,7 @@ loading="lazy"
 
 <img
 className="product_img"
-src={`http://localhost:3001${arrayStore.file_path1}`}
+src={`https://antara-gug4.onrender.com${arrayStore.file_path1}`}
 alt=''
 loading="lazy"
 />
@@ -186,7 +186,7 @@ loading="lazy"
 
 <img
 className="product_img"
-src={`http://localhost:3001${arrayStore.file_path2}`}
+src={`https://antara-gug4.onrender.com${arrayStore.file_path2}`}
 alt=''
 loading="lazy"
 />
@@ -195,7 +195,7 @@ loading="lazy"
 
 <img
 className="product_img"
-src={`http://localhost:3001${arrayStore.file_path3}`}
+src={`https://antara-gug4.onrender.com${arrayStore.file_path3}`}
 alt=''
 loading="lazy"
 />
@@ -212,7 +212,7 @@ desktop view */}
 
 <img
 className="thumbnail"
-src={`http://localhost:3001${arrayStore.file_path1}`}
+src={`https://antara-gug4.onrender.com${arrayStore.file_path1}`}
 alt="home made pickles"
 loading="lazy"
 onClick={() => handleThumbnailClick(arrayStore.file_path1)}
@@ -220,7 +220,7 @@ onClick={() => handleThumbnailClick(arrayStore.file_path1)}
 
 <img
 className="thumbnail"
-src={`http://localhost:3001${arrayStore.file_path2}`}
+src={`https://antara-gug4.onrender.com${arrayStore.file_path2}`}
 alt="ingredients used pickles"
 loading="lazy"
 onClick={() => handleThumbnailClick(arrayStore.file_path2)}
@@ -228,7 +228,7 @@ onClick={() => handleThumbnailClick(arrayStore.file_path2)}
 
 <img
 className="thumbnail"
-src={`http://localhost:3001${arrayStore.file_path3}`}
+src={`https://antara-gug4.onrender.com${arrayStore.file_path3}`}
 alt="customized pickles"
 onClick={() => handleThumbnailClick(arrayStore.file_path3)}
 loading="lazy"
@@ -244,7 +244,7 @@ with zoom */}
 <Zoom>
 <img
 className="product_img"
-src={`http://localhost:3001${mainImage}`}
+src={`https://antara-gug4.onrender.com${mainImage}`}
 alt={arrayStore.name}
 loading="lazy"
 />
