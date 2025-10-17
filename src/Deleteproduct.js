@@ -10,7 +10,7 @@ const handleDelete = async (e) => {
 e.preventDefault();
 
 try {
-const response = await fetch("https://lavonne-0729.onrender.com/deletebyname", {
+const response = await fetch("https://antara-gug4.onrender.com/deletebyname", {
 method: "POST",
 headers: {
 "Content-Type": "application/json",
