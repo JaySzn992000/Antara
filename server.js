@@ -6,6 +6,8 @@ const multer = require("multer");
 const path = require("path");
 const Razorpay = require("razorpay");
 const fs = require("fs");
+const axios = require("axios");
+const cloudinary = require("cloudinary").v2;
 const app = express(); 
 
 
@@ -15,9 +17,8 @@ const pool = require("./config");
 
 app.use(cors({
   origin: [
-    'http://localhost:3000',
-    'https://naturalbuti-jb4y.vercel.app',
-    'https://namasyaa.vercel.app'
+    'https://antara-xi.vercel.app',
+    'http://localhost:3000'
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
@@ -145,129 +146,130 @@ res.status(500).json({ message: "Error fetched", error: err.message });
 
 
 
-app.post("/registerationPost", (req, res) => {
+// app.post("/registerationPost", (req, res) => {
 
-const { name, email, password, mobileno } = req.body;
-
-// Check for duplicate mobile
-
-const checkMobileQuery =
-"SELECT mobileno FROM registeration WHERE mobileno = ? LIMIT 1";
-db.query(checkMobileQuery, [mobileno], (err, mobileResults) => {
-if (err) {
-console.error("Database error (mobile):", err);
-return res.status(200).json({
-success: false,
-message: "System error. Please try later.",
-});
-}
-
-
-if (mobileResults.length > 0) {
-return res.status(200).json({
-success: false,
-message: "Mobile number already registered",
-});
-}
-
-// Check for duplicate email
-
-const checkEmailQuery =
-"SELECT email FROM registeration WHERE email = ? LIMIT 1";
-db.query(checkEmailQuery, [email], (err, emailResults) => {
-if (err) {
-console.error("Database error (email):", err);
-return res.status(200).json({
-success: false,
-message: "System error. Please try later.",
-});
-}
-
-if (emailResults.length > 0) {
-return res.status(200).json({
-success: false,
-message: "Email address already registered",
-});
-}
-
-// Insert new user
-
-const insertQuery =
-"INSERT INTO registeration (name, email, password, mobileno) VALUES (?, ?, ?, ?)";
-db.query(
-insertQuery,
-[name, email, password, mobileno],
-(err, result) => {
-if (err) {
-console.error("Registration error:", err);
-return res.status(200).json({
-success: false,
-message: "Registration failed. Try again.",
-});
-}
-return res.status(200).json({
-success: true,
-message: "Registered successfully",
-});
-}
-);
-});
-});
-
-});
-
-//
-
-// app.post("/registerationPost", async (req, res) => {
 // const { name, email, password, mobileno } = req.body;
 
-// try {
-// // Step 1: Check for duplicate mobile
-// const checkMobileQuery = `
-// SELECT mobileno FROM _registeration WHERE mobileno = $1 LIMIT 1
-// `;
-// const mobileResult = await pool.query(checkMobileQuery, [mobileno]);
+// // Check for duplicate mobile
 
-// if (mobileResult.rows.length > 0) {
+// const checkMobileQuery =
+// "SELECT mobileno FROM registeration WHERE mobileno = ? LIMIT 1";
+// db.query(checkMobileQuery, [mobileno], (err, mobileResults) => {
+// if (err) {
+// console.error("Database error (mobile):", err);
+// return res.status(200).json({
+// success: false,
+// message: "System error. Please try later.",
+// });
+// }
+
+
+// if (mobileResults.length > 0) {
 // return res.status(200).json({
 // success: false,
 // message: "Mobile number already registered",
 // });
 // }
 
-// // Step 2: Check for duplicate email
-// const checkEmailQuery = `
-// SELECT email FROM _registeration WHERE email = $1 LIMIT 1
-// `;
-// const emailResult = await pool.query(checkEmailQuery, [email]);
+// // Check for duplicate email
 
-// if (emailResult.rows.length > 0) {
+// const checkEmailQuery =
+// "SELECT email FROM registeration WHERE email = ? LIMIT 1";
+// db.query(checkEmailQuery, [email], (err, emailResults) => {
+// if (err) {
+// console.error("Database error (email):", err);
+// return res.status(200).json({
+// success: false,
+// message: "System error. Please try later.",
+// });
+// }
+
+// if (emailResults.length > 0) {
 // return res.status(200).json({
 // success: false,
 // message: "Email address already registered",
 // });
 // }
 
-// // Step 3: Insert new user
-// const insertQuery = `
-// INSERT INTO _registeration (name, email, password, mobileno)
-// VALUES ($1, $2, $3, $4)
-// `;
-// await pool.query(insertQuery, [name, email, password, mobileno]);
+// // Insert new user
 
+// const insertQuery =
+// "INSERT INTO registeration (name, email, password, mobileno) VALUES (?, ?, ?, ?)";
+// db.query(
+// insertQuery,
+// [name, email, password, mobileno],
+// (err, result) => {
+// if (err) {
+// console.error("Registration error:", err);
+// return res.status(200).json({
+// success: false,
+// message: "Registration failed. Try again.",
+// });
+// }
 // return res.status(200).json({
 // success: true,
 // message: "Registered successfully",
 // });
-
-// } catch (err) {
-// console.error("❌ Registration error:", err.message);
-// return res.status(500).json({
-// success: false,
-// message: "System error. Please try later.",
-// });
 // }
+// );
 // });
+// });
+
+// });
+
+// //
+
+
+app.post("/registerationPost", async (req, res) => {
+const { name, email, password, mobileno } = req.body;
+
+try {
+// Step 1: Check for duplicate mobile
+const checkMobileQuery = `
+SELECT mobileno FROM _registeration WHERE mobileno = $1 LIMIT 1
+`;
+const mobileResult = await pool.query(checkMobileQuery, [mobileno]);
+
+if (mobileResult.rows.length > 0) {
+return res.status(200).json({
+success: false,
+message: "Mobile number already registered",
+});
+}
+
+// Step 2: Check for duplicate email
+const checkEmailQuery = `
+SELECT email FROM _registeration WHERE email = $1 LIMIT 1
+`;
+const emailResult = await pool.query(checkEmailQuery, [email]);
+
+if (emailResult.rows.length > 0) {
+return res.status(200).json({
+success: false,
+message: "Email address already registered",
+});
+}
+
+// Step 3: Insert new user
+const insertQuery = `
+INSERT INTO _registeration (name, email, password, mobileno)
+VALUES ($1, $2, $3, $4)
+`;
+await pool.query(insertQuery, [name, email, password, mobileno]);
+
+return res.status(200).json({
+success: true,
+message: "Registered successfully",
+});
+
+} catch (err) {
+console.error("❌ Registration error:", err.message);
+return res.status(500).json({
+success: false,
+message: "System error. Please try later.",
+});
+}
+});
 
 
 
@@ -741,60 +743,60 @@ res.status(500).json({ error: "Database query failed" });
 
 // fetchProductslist PostGreSQL 
 
-// app.get("/fetchProductslist", async (req, res) => {
-// const searchQuery = req.query.search || "";
-// const keywords = searchQuery.toLowerCase().split(/\s+/);
+app.get("/fetchProductslist", async (req, res) => {
+const searchQuery = req.query.search || "";
+const keywords = searchQuery.toLowerCase().split(/\s+/);
 
-// try {
-// const conditions = keywords.map((_, index) => `LOWER(name) ILIKE $${index + 1}`).join(" AND ");
-// const values = keywords.map((keyword) => `%${keyword}%`);
+try {
+const conditions = keywords.map((_, index) => `LOWER(name) ILIKE $${index + 1}`).join(" AND ");
+const values = keywords.map((keyword) => `%${keyword}%`);
 
-// const query = `
-// SELECT * FROM _imgproduct
-// WHERE ${conditions}
-// `;
+const query = `
+SELECT * FROM _imgproduct
+WHERE ${conditions}
+`;
 
-// const result = await pool.query(query, values);
+const result = await pool.query(query, values);
 
-// if (result.rows.length > 0) {
-// return res.json(result.rows);
-// }
-
-// const exactMatchQuery = `
-// SELECT * FROM _imgproduct
-// WHERE LOWER(img) = LOWER($1)
-// `;
-// const exactResult = await pool.query(exactMatchQuery, [searchQuery]);
-
-// res.json(exactResult.rows);
-// } catch (err) {
-// console.error("❌ Database query failed:", err.message);
-// res.status(500).json({ error: "Database query failed" });
-// }
-// });
-
-
-// app.get("/fetchProductslist", async (req, res) => {
-// try {
-// const result = await pool.query("SELECT * FROM _imgproduct");
-// res.json(result.rows);
-// } catch (err) {
-// console.error("Error fetching data:", err.message);
-// res.status(500).json({ error: "Database query failed" });
-// }
-// });
-
-
-
-app.get("/fetchProductslist", (req, res) => {
-db.query("SELECT * FROM imgproduct", (err, results) => {
-if (err) {
-console.error("Error fetching data:", err.stack);
-return res.status(500).json({ error: "Database query failed" });
+if (result.rows.length > 0) {
+return res.json(result.rows);
 }
-res.json(results);
+
+const exactMatchQuery = `
+SELECT * FROM _imgproduct
+WHERE LOWER(img) = LOWER($1)
+`;
+const exactResult = await pool.query(exactMatchQuery, [searchQuery]);
+
+res.json(exactResult.rows);
+} catch (err) {
+console.error("❌ Database query failed:", err.message);
+res.status(500).json({ error: "Database query failed" });
+}
 });
+
+
+app.get("/fetchProductslist", async (req, res) => {
+try {
+const result = await pool.query("SELECT * FROM _imgproduct");
+res.json(result.rows);
+} catch (err) {
+console.error("Error fetching data:", err.message);
+res.status(500).json({ error: "Database query failed" });
+}
 });
+
+
+
+// app.get("/fetchProductslist", (req, res) => {
+// db.query("SELECT * FROM imgproduct", (err, results) => {
+// if (err) {
+// console.error("Error fetching data:", err.stack);
+// return res.status(500).json({ error: "Database query failed" });
+// }
+// res.json(results);
+// });
+// });
 
 
 
@@ -1579,7 +1581,7 @@ try {
 const client = await pool.connect();
 
 const insertQuery = `
-INSERT INTO custorder (
+INSERT INTO _custorder (
 name, mob, email, id, productname, price, quantity,
 gender, add_name, country, pincode, address, state,
 mobilenumber, alternativenumber, emailid,
@@ -1696,7 +1698,7 @@ console.log(`Server is running PORT on ${PORT}`);
 
 setInterval(() => {
   axios
-    .get("https://naturalbuti.onrender.com/ping")
+    .get("https://antara-gug4.onrender.com/ping")
     .then(() => {
       console.log("Pinged self to stay awake");
     })
@@ -1772,6 +1774,88 @@ res.status(400).json({ error: "Payment verification failed" });
 }
 });
 
+
+// 🔑 Cloudinary Config
+
+cloudinary.config({
+  cloud_name: "dwwmpm9qy", // आपका cloud_name
+  api_key: "428986251698984",
+  api_secret: "RWf2H7aeMTAEL2pTguwLKIS-110",
+});
+
+
+// ✅ Multer (temp folder)
+const upload = multer({ dest: "uploads/" });
+
+// ✅ Helper → file को Cloudinary पर upload करके URL return
+const uploadToCloudinary = async (file) => {
+  if (!file) return null;
+  const result = await cloudinary.uploader.upload(file.path, {
+    folder: "products",
+  });
+  fs.unlinkSync(file.path); // local temp file delete
+  return result.secure_url; // Cloudinary का URL
+};
+
+// ✅ Add Product API (PostgreSQL compatible)
+app.post(
+  "/api/add-product",
+  upload.fields([
+    { name: "image", maxCount: 1 },
+    { name: "imageone", maxCount: 1 },
+    { name: "imagetwo", maxCount: 1 },
+    { name: "imagethree", maxCount: 1 },
+  ]),
+  async (req, res) => {
+    try {
+      console.log("📩 Body Data:", req.body);
+      console.log("📸 Files Data:", req.files);
+
+      const { category, name, price, sizes, stock, description, review } =
+        req.body;
+
+      // Cloudinary Upload
+      const imagePath = await uploadToCloudinary(req.files.image?.[0]);
+      const imagePathOne = await uploadToCloudinary(req.files.imageone?.[0]);
+      const imagePathTwo = await uploadToCloudinary(req.files.imagetwo?.[0]);
+      const imagePathThree = await uploadToCloudinary(req.files.imagethree?.[0]);
+
+      // ✅ PostgreSQL Insert Query
+      const query = `
+        INSERT INTO _imgproduct 
+        (img, name, price, file_path, sizes, file_path1, file_path2, file_path3, stock, description, review) 
+        VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)
+        RETURNING id;
+      `;
+
+      const values = [
+        category,
+        name,
+        price,
+        imagePath,
+        sizes,
+        imagePathOne,
+        imagePathTwo,
+        imagePathThree,
+        stock,
+        description,
+        review,
+      ];
+
+      const result = await pool.query(query, values);
+
+      res.status(200).json({
+        message: "✅ Product added successfully",
+        productId: result.rows[0].id,
+      });
+    } catch (err) {
+      console.error("❌ Upload failed:", err);
+      res.status(500).send("Upload failed");
+    }
+  }
+);
+
+
 // Dashboard
 
 // Setting up
@@ -1780,77 +1864,78 @@ res.status(400).json({ error: "Payment verification failed" });
 // Multer
 // storage configuration
 
-const storage = multer.diskStorage({
-destination: (req, file, cb) => {
-cb(null, "public/Images");
-},
-filename: (req, file, cb) => {
-cb(null, Date.now() + path.extname(file.originalname));
-},
-});
+// const storage = multer.diskStorage({
+// destination: (req, file, cb) => {
+// cb(null, "public/Images");
+// },
+// filename: (req, file, cb) => {
+// cb(null, Date.now() + path.extname(file.originalname));
+// },
+// });
 
-// Configure
-// multer for multiple fields
+// // Configure
+// // multer for multiple fields
 
-const upload = multer({
-storage: storage,
-});
+// const upload = multer({
+// storage: storage,
+// });
 
-app.post(
-"/api/add-product",
-upload.fields([
-{ name: "image", maxCount: 1 },
-{ name: "imageone", maxCount: 1 },
-{ name: "imagetwo", maxCount: 1 },
-{ name: "imagethree", maxCount: 1 },
-]),
-(req, res) => {
-console.log("📩 Body Data:", req.body);   
-console.log("📸 Files Data:", req.files);
-const { category, name, price, sizes, stock, description, review } =
-req.body;
+// app.post(
+// "/api/add-product",
+// upload.fields([
+// { name: "image", maxCount: 1 },
+// { name: "imageone", maxCount: 1 },
+// { name: "imagetwo", maxCount: 1 },
+// { name: "imagethree", maxCount: 1 },
+// ]),
+// (req, res) => {
+// console.log("📩 Body Data:", req.body);   
+// console.log("📸 Files Data:", req.files);
+// const { category, name, price, sizes, stock, description, review } =
+// req.body;
 
-const imagePath = req.files.image
-? `/Images/${req.files.image[0].filename}`
-: null;
-const imagePathOne = req.files.imageone
-? `/Images/${req.files.imageone[0].filename}`
-: null;
-const imagePathTwo = req.files.imagetwo
-? `/Images/${req.files.imagetwo[0].filename}`
-: null;
-const imagePathThree = req.files.imagethree
-? `/Images/${req.files.imagethree[0].filename}`
-: null;
+// const imagePath = req.files.image
+// ? `/Images/${req.files.image[0].filename}`
+// : null;
+// const imagePathOne = req.files.imageone
+// ? `/Images/${req.files.imageone[0].filename}`
+// : null;
+// const imagePathTwo = req.files.imagetwo
+// ? `/Images/${req.files.imagetwo[0].filename}`
+// : null;
+// const imagePathThree = req.files.imagethree
+// ? `/Images/${req.files.imagethree[0].filename}`
+// : null;
 
-const query =
-"INSERT INTO imgproduct (img, name, price, file_path, sizes, file_path1, file_path2, file_path3, stock, description, review) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?)";
+// const query =
+// "INSERT INTO _imgproduct (img, name, price, file_path, sizes, file_path1, file_path2, file_path3, stock, description, review) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?)";
 
-db.query(
-query,
-[
-category,
-name,
-price,
-imagePath,
-sizes,
-imagePathOne,
-imagePathTwo,
-imagePathThree,
-stock,
-description,
-review,
-],
-(err, result) => {
-if (err) {
-console.error("Error inserting product into database:", err);
-return res.status(500).send("Error adding product");
-}
-res.status(200).send("Product added successfully");
-}
-);
-}
-);
+// db.query(
+// query,
+// [
+// category,
+// name,
+// price,
+// imagePath,
+// sizes,
+// imagePathOne,
+// imagePathTwo,
+// imagePathThree,
+// stock,
+// description,
+// review,
+// ],
+// (err, result) => {
+// if (err) {
+// console.error("Error inserting product into database:", err);
+// return res.status(500).send("Error adding product");
+// }
+// res.status(200).send("Product added successfully");
+// }
+// );
+// }
+// );
+
 
 // const storage = multer.diskStorage({
 // destination: (req, file, cb) => {
@@ -1955,6 +2040,8 @@ res.status(200).send("Product added successfully");
 // res.status(200).send("Product updated successfully");
 // });
 // });
+
+
 
 app.post("/api/update-product", upload.single("image"), async (req, res) => {
 const { oldName, newName, price } = req.body;
