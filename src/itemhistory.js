@@ -28,7 +28,7 @@ useEffect(() => {
 const customerFetch = async () => {
 try {
 const response = await fetch(
-"https://lavonne-0729.onrender.com/historyfetchcustomer"
+"https://antara-gug4.onrender.com/historyfetchcustomer"
 );
 const data = await response.json();
 if (loggedInUser) {
@@ -96,7 +96,7 @@ Purchase History ({quantities.length})
 <td>
 {item.file_path && (
 <img
-src={`https://lavonne-0729.onrender.com${item.file_path}`}
+src={`https://antara-gug4.onrender.com${item.file_path}`}
 alt={item.productname}
 className="custorders-imageItem"
 />
