@@ -122,7 +122,7 @@ setIsProcessing(true); // 🟢 Immediately
 // show "Processing..."
 
 try {
-const response = await axios.post("https://lavonne-0729.onrender.com/create-order", {
+const response = await axios.post("https://antara-gug4.onrender.com/create-order", {
 amount: totalAmount,
 });
 
@@ -143,7 +143,7 @@ return;
 
 
 const paymentVerificationResponse = await axios.post(
-"https://lavonne-0729.onrender.com/verify-payment",
+"https://antara-gug4.onrender.com/verify-payment",
 response
 );
 
@@ -173,7 +173,7 @@ payment_status: "Sucessfull",
 
 
 await axios.post(
-"https://lavonne-0729.onrender.com/addcartaddress",
+"https://antara-gug4.onrender.com/addcartaddress",
 dataToSend
 );
 resetForm();
