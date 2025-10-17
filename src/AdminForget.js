@@ -45,7 +45,7 @@ return;
 }
 
 try {
-const response = await fetch("https://lavonne-0729.onrender.com/resetAdminPassword", {
+const response = await fetch("https://antara-gug4.onrender.com/resetAdminPassword", {
 method: "POST",
 headers: {
 "Content-Type": "application/json",
