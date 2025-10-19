@@ -162,46 +162,48 @@ content="https://yourdomain.com/images/pickle-default.jpg"
 
 <div className="product-details">
 
+{/* Mobile Slider */}
+
 <div className="mobile-slider">
-<Slider {...sliderSettings}>
-<div>
 
-<img
-className="product_img"
-src={`https://antara-gug4.onrender.com${arrayStore.file_path}`}
-alt=''
-loading="lazy"
-/>
-</div>
-<div>
+  <Slider {...sliderSettings}>
+    <div>
+      <img
+        className="product_img mobile-slider-img"
+        src={arrayStore.file_path}
+        alt={`${arrayStore.name} - Image 1`}
+        loading="lazy"
+      />
+    </div>
 
-<img
-className="product_img"
-src={`https://antara-gug4.onrender.com${arrayStore.file_path1}`}
-alt=''
-loading="lazy"
-/>
-</div>
-<div>
+    <div>
+      <img
+        className="product_img mobile-slider-img"
+        src={arrayStore.file_path1}
+        alt={`${arrayStore.name} - Image 2`}
+        loading="lazy"
+      />
+    </div>
 
-<img
-className="product_img"
-src={`https://antara-gug4.onrender.com${arrayStore.file_path2}`}
-alt=''
-loading="lazy"
-/>
-</div>
-<div>
+    <div>
+      <img
+        className="product_img mobile-slider-img"
+        src={arrayStore.file_path2}
+        alt={`${arrayStore.name} - Image 3`}
+        loading="lazy"
+      />
+    </div>
 
-<img
-className="product_img"
-src={`https://antara-gug4.onrender.com${arrayStore.file_path3}`}
-alt=''
-loading="lazy"
-/>
-</div>
-</Slider>
-
+    <div>
+      <img
+        className="product_img mobile-slider-img"
+        src={arrayStore.file_path3}
+        alt={`${arrayStore.name} - Image 4`}
+        loading="lazy"
+      />
+    </div>
+  </Slider>
+  
 </div>
 
 {/* Thumbnails for 
