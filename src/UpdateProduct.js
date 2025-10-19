@@ -88,7 +88,7 @@ value={oldName}
 onChange={(e) => setOldName(e.target.value)}
 required
 placeholder="Old Product Name"
-maxLength={30}
+maxLength={50}
 />
 
 <label>New Product Name :</label>
@@ -98,7 +98,7 @@ value={newName}
 onChange={(e) => setNewName(e.target.value)}
 required
 placeholder="New Product Name"
-maxLength={30}
+maxLength={50}
 />
 
 </div>
