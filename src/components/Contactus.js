@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
-import ContactPickle from '../Slider/Contact_Achar.jpg';
+import VideoOne from "../Slider/Video1.mp4"; 
 import "./Contact.css";
 
 const Contactus = () => {
+
 
 const [formData, setFormData] = useState({
 name: '',
@@ -67,11 +68,14 @@ return (
 <form onSubmit={sendEmail} className="form_contact">
 
 <figure>
-
-<img
-loading="lazy"
-src={ContactPickle} alt="" />
-
+<video
+src={VideoOne}
+autoPlay
+loop
+muted
+playsInline
+className="contact_video"
+/>
 </figure>
 
 <div>
