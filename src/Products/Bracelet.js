@@ -151,7 +151,7 @@ wishlistStatus[product.id] ? "wishlist-active" : ""
 
 <Link to={`/product/${product.id}`}>
 <img
-src={`https://antara-gug4.onrender.com${product.file_path}`}
+src={product.file_path}
 alt={product.name}
 />
 </Link>
@@ -164,7 +164,7 @@ alt={product.name}
 
 <div className="review_Cntnr">
 <img id="Review_Img"
-src="https://cdn-icons-png.flaticon.com/128/15853/15853959.png"
+src="https://cdn-icons-png.flaticon.com/128/69/69495.png"
 alt=""
 loading="lazy"
 ></img>
