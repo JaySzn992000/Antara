@@ -78,7 +78,7 @@ color: #f8a424;
 
 .normal_header {
 height: 955px;
-margin-top: -.5em;
+margin-top: 2.5em;
 }
 
 .normal_header .div_header {
@@ -88,6 +88,7 @@ width: 100%;
 gap: 0em;
 margin-top: -2.1em;
 }
+
 
 .normal_header .div_header .nMheader_dvLogo {
 width: 107px;
