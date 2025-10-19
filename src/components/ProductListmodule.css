@@ -148,7 +148,6 @@ transition: background-color 0.3s ease;
 
 .fa-heart_products.wishlist-active {
 color: #f8dccc !important;
-background-color: rgb(255, 255, 255);
 }
 
 
