@@ -388,9 +388,13 @@ margin-bottom: 3.1em;
 }
 
 
-.Secure_ordering img {
-width: 100%;
+.Secure_ordering {
+width: 85%;
+padding: 0;
+margin-top: 3.5em;
+margin-bottom: 3.1em;
 }
+
 
 .img_bannerOne {
 width: 100%;
