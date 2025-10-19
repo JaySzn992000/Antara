@@ -75,7 +75,7 @@ margin-bottom: 0.6em;
 }
 
 
-.form_contact img {
+.form_contact figure {
 width: 515px;
 max-width: 100%;
 object-fit: cover;
@@ -84,8 +84,9 @@ cursor: pointer;
 transition: transform 0.3s ease;
 }
 
-.form_contact img:hover {
-transform: scale(1.02);
+
+.form_contact figure video{
+width: 100%;
 }
 
 
@@ -142,6 +143,7 @@ font-size: 1rem;
 
 
 @media (max-width: 1024px) {
+
 .form_contact {
 flex-direction: column;
 align-items: center;
@@ -155,18 +157,14 @@ width: 90%;
 margin: 0 auto;
 }
 
-.form_contact img {
-width: 90%;
-margin: 0 auto;
-}
 
 .form_contact input,
 .form_contact textarea {
-width: 90%;
+width: 100%;
 }
 
 .form_contact button {
-width: 60%;
+width: 100%;
 font-size: 0.9rem;
 }
 
