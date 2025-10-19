@@ -89,6 +89,14 @@ transition: transform 0.3s ease;
 width: 100%;
 }
 
+.form_contact img {
+width: 475px;
+max-width: 100%;
+object-fit: cover;
+border-radius: 3px;
+cursor: pointer;
+}
+
 
 .hideInput_Contact {
 display: none;
