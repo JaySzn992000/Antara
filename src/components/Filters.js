@@ -13,7 +13,7 @@ jeansPantsShorts: [],
 
 
 const [minPrice, setMinPrice] = useState(0);
-const [maxPrice, setMaxPrice] = useState(2000);
+const [maxPrice, setMaxPrice] = useState(100000);
 const [isPriceChanged, setIsPriceChanged] = useState(false);
 
 const [filters_div, setfilters_div] = useState(false);
@@ -138,7 +138,7 @@ Type Filter */}
 <input
 type="range"
 min="0"
-max="1000"
+max="100000"
 step="10"
 value={minPrice}
 onChange={(e) => {
@@ -151,7 +151,7 @@ style={{ width: "90%" }}
 <input
 type="range"
 min="0"
-max="1000"
+max="100000"
 step="10"
 value={maxPrice}
 onChange={(e) => {
