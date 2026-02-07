@@ -134,7 +134,7 @@ className="cart-item-image"
 {/*  */}
 
 <div className="Produt_nCart">
-<br></br>
+<span className="fontSizeSpn">In Stock</span> <br></br>
 <span className="fontSizeSpn">{item.name}</span>
 </div>
 
@@ -188,7 +188,7 @@ Rs <span>{totalAmount}</span>
 
 <button onClick={asyncProceed}>
 <i class="fas fa-shopping-cart" aria-hidden="true"></i>
-<h4>ORDER Now</h4>
+<h4>PLACE ORDER</h4>
 </button>
 
 </section>
