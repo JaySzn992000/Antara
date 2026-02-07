@@ -6,7 +6,6 @@ const multer = require("multer");
 const path = require("path");
 const Razorpay = require("razorpay");
 const fs = require("fs");
-const axios = require("axios");
 const cloudinary = require("cloudinary").v2;
 const app = express(); 
 
@@ -47,6 +46,8 @@ app.get("/ping", (req, res) => {
   res.status(200).send("Server is alive!");
 });
 
+
+const axios = require("axios");
 
 
 app.get("/registeration", async (req, res) => {
@@ -144,9 +145,7 @@ res.status(500).json({ message: "Error fetched", error: err.message });
 });
 
 
-
 // app.post("/registerationPost", (req, res) => {
-
 // const { name, email, password, mobileno } = req.body;
 
 // // Check for duplicate mobile
@@ -213,11 +212,9 @@ res.status(500).json({ message: "Error fetched", error: err.message });
 // );
 // });
 // });
-
 // });
 
-// //
-
+//
 
 app.post("/registerationPost", async (req, res) => {
 const { name, email, password, mobileno } = req.body;
@@ -331,7 +328,7 @@ WHERE LOWER(img) = LOWER($1)
 `;
 
 try {
-const result = await pool.query(exactMatchQuery, ['Necklets']);
+const result = await pool.query(exactMatchQuery, ['AloeVeraGel']);
 res.json(result.rows);
 } catch (err) {
 console.error("Error fetching data:", err.message);
@@ -367,7 +364,7 @@ WHERE LOWER(img) = LOWER($1)
 `;
 
 try {
-const result = await pool.query(exactMatchQuery, ['Chilli']);
+const result = await pool.query(exactMatchQuery, ['KasturiHaldi']);
 res.json(result.rows);
 } catch (err) {
 console.error("Error fetching data:", err.message);
@@ -438,7 +435,7 @@ WHERE LOWER(img) = LOWER($1)
 `;
 
 try {
-const result = await pool.query(exactMatchQuery, ['Rings']);
+const result = await pool.query(exactMatchQuery, ['BananaPowder']);
 res.json(result.rows);
 } catch (err) {
 console.error("Error fetching data:", err.message);
@@ -510,7 +507,7 @@ WHERE LOWER(img) = LOWER($1)
 `;
 
 try {
-const result = await pool.query(exactMatchQuery, ['Lemon']);
+const result = await pool.query(exactMatchQuery, ['LicoricePowder']);
 res.json(result.rows);
 } catch (err) {
 console.error("Error fetching data:", err.message);
@@ -546,7 +543,7 @@ WHERE LOWER(img) = LOWER($1)
 `;
 
 try {
-const result = await pool.query(exactMatchQuery, ['Bitter']);
+const result = await pool.query(exactMatchQuery, ['HairGrowth']);
 res.json(result.rows);
 } catch (err) {
 console.error("Error fetching data:", err.message);
@@ -581,7 +578,7 @@ WHERE LOWER(img) = LOWER($1)
 `;
 
 try {
-const result = await pool.query(exactMatchQuery, ['Garlic']);
+const result = await pool.query(exactMatchQuery, ['SandalwoodPowder']);
 res.json(result.rows);
 } catch (err) {
 console.error("Error fetching data:", err.message);
@@ -687,7 +684,7 @@ WHERE LOWER(img) = LOWER($1)
 `;
 
 try {
-const result = await pool.query(exactMatchQuery, ['Bracelet']);
+const result = await pool.query(exactMatchQuery, ['BeetrootPowder']);
 res.json(result.rows);
 } catch (err) {
 console.error("Error fetching data:", err.message);
@@ -699,43 +696,52 @@ res.status(500).json({ error: "Database query failed" });
 // from here
 
 // app.get("/fetchProductslist", (req, res) => {
-//   const searchQuery = req.query.search || "";
-//   const keywords = searchQuery.toLowerCase().split(/\s+/);
-//   const conditions = keywords.map((keyword) => `LOWER(name) LIKE ?`).join(" AND ");
-//   const advancedSearchQuery = `
-//     SELECT *
-//     FROM imgproduct
-//     WHERE ${conditions}
-//   `;
-//   const advancedSearchValues = keywords.map((keyword) => `%${keyword}%`);
+// const searchQuery = req.query.search || "";
 
-//   db.query(advancedSearchQuery, advancedSearchValues, (err, advancedResults) => {
-//     if (err) {
-//       console.error("Error fetching data:", err.stack);
-//       return res.status(500).json({ error: "Database query failed" });
-//     }
+// const keywords = searchQuery.toLowerCase().split(/\s+/);
+// const conditions = keywords
+// .map((keyword) => `LOWER(name) LIKE ?`)
+// .join(" AND ");
+// const advancedSearchQuery = `
+// SELECT *
+// FROM imgproduct
+// WHERE ${conditions}
+// `;
+// const advancedSearchValues = keywords.map((keyword) => `%${keyword}%`);
 
-//     if (advancedResults.length > 0) {
-//       return res.json(advancedResults);
-//     }
+// db.query(
+// advancedSearchQuery,
+// advancedSearchValues,
+// (err, advancedResults) => {
+// if (err) {
+// console.error("Error fetching data:", err.stack);
+// return res.status(500).json({ error: "Database query failed" });
+// }
 
-//     // If no results, do exact match
-//     const exactMatchQuery = `
-//       SELECT *
-//       FROM imgproduct
-//       WHERE LOWER(img) = LOWER(?)
-//     `;
-//     const values = [searchQuery];
+// if (advancedResults.length > 0) {
+// return res.json(advancedResults);
+// }
 
-//     db.query(exactMatchQuery, values, (err, exactResults) => {
-//       if (err) {
-//         console.error("Error fetching data:", err.stack);
-//         return res.status(500).json({ error: "Database query failed" });
-//       }
+// // If no advanced results,
+// // check exact match
 
-//       res.json(exactResults);
-//     });
-//   });
+// const exactMatchQuery = `
+// SELECT *
+// FROM imgproduct
+// WHERE LOWER(img) = LOWER(?)
+// `;
+// const values = [searchQuery];
+
+// db.query(exactMatchQuery, values, (err, exactResults) => {
+// if (err) {
+// console.error("Error fetching data:", err.stack);
+// return res.status(500).json({ error: "Database query failed" });
+// }
+
+// res.json(exactResults);
+// });
+// }
+// );
 // });
 
 
@@ -798,6 +804,7 @@ res.status(500).json({ error: "Database query failed" });
 });
 
 
+
 // app.get("/fetchProductDetails", (req, res) => {
 // const Insertproductlist = "SELECT * FROM imgproduct";
 // db.query(Insertproductlist, (err, result) => {
@@ -839,7 +846,6 @@ res.status(500).json({ message: "Fetch error", error: err.message });
 // res.status(200).json(result);
 // }
 // });
-
 // });
 
 
@@ -887,6 +893,8 @@ res.status(500).json({ message: "Error fetched", error: err.message });
 // });
 // });
 
+
+
 app.post("/verifyemail", async (req, res) => {
 const { email } = req.body;
 
@@ -911,7 +919,6 @@ return res
 .json({ message: "Error fetching email", error: err.message });
 }
 });
-
 
 // Reset Password Endpoint
 // app.post("/resetpassword", (req, res) => {
@@ -1179,6 +1186,8 @@ res.status(500).json({ message: "Fetch error", error: err.message });
 });
 
 
+
+
 // app.post("/resetAdminPassword", (req, res) => {
 // const { adminuser, newPassword } = req.body;
 
@@ -1232,46 +1241,34 @@ res.status(500).json({ message: "Fetch error", error: err.message });
 // });
 // });
 
-//
 
 
 app.post("/resetAdminPassword", async (req, res) => {
-const { adminuser, newPassword } = req.body;
+  const { adminuser, newPassword } = req.body;
 
-if (!adminuser || !newPassword) {
-return res.status(400).json({
-success: false,
-message: "Username and new password are required",
-});
-}
+  if (!adminuser || !newPassword) {
+    return res.status(400).json({ message: "Missing fields" });
+  }
 
-const checkUserQuery = "SELECT * FROM _admindashboard WHERE _adminuser = $1";
-const updatePasswordQuery =
-"UPDATE _admindashboard SET _adminpass = $1 WHERE _adminuser = $2";
+  try {
+    const checkUser = await pool.query(
+      "SELECT * FROM _admindashboard WHERE adminuser = $1",
+      [adminuser]
+    );
 
-try {
-const result = await pool.query(checkUserQuery, [adminuser]);
+    if (checkUser.rows.length === 0) {
+      return res.status(404).json({ message: "User not found" });
+    }
 
-if (result.rows.length === 0) {
-return res
-.status(404)
-.json({ success: false, message: "User not found!" });
-}
+    await pool.query(
+      "UPDATE _admindashboard SET adminpass = $1 WHERE adminuser = $2",
+      [newPassword, adminuser]
+    );
 
-await pool.query(updatePasswordQuery, [newPassword, adminuser]);
-
-console.log("Password updated successfully!");
-return res
-.status(200)
-.json({ success: true, message: "Password updated successfully!" });
-} catch (err) {
-console.error("Error:", err.message);
-return res.status(500).json({
-success: false,
-message: "Error occurred while processing your request",
-error: err.message,
-});
-}
+    res.json({ message: "Password updated successfully" });
+  } catch (err) {
+    res.status(500).json({ message: "Error updating password", error: err.message });
+  }
 });
 
 
@@ -1315,6 +1312,7 @@ error: err.message,
 // });
 // });
 
+
 app.post("/updateAdminSimple", async (req, res) => {
 const { olduser, adminuser, adminpass } = req.body;
 
@@ -1353,7 +1351,6 @@ error: err.message,
 });
 }
 });
-
 
 // Admin
 //  Registeration ...
@@ -1685,6 +1682,7 @@ res.status(500).json({ message: "Database update error", error: err.message });
 }
 });
 
+
 //
 
 
@@ -1698,7 +1696,7 @@ console.log(`Server is running PORT on ${PORT}`);
 
 setInterval(() => {
   axios
-    .get("https://antara-gug4.onrender.com/ping")
+    .get("https://naturalbuti.onrender.com/ping")
     .then(() => {
       console.log("Pinged self to stay awake");
     })
@@ -1775,6 +1773,94 @@ res.status(400).json({ error: "Payment verification failed" });
 });
 
 
+
+// Dashboard
+
+// Setting up
+// Multer for file uploads
+
+// Multer
+// storage configuration
+
+// const storage = multer.diskStorage({
+// destination: (req, file, cb) => {
+// cb(null, "public/Images");
+// },
+// filename: (req, file, cb) => {
+// cb(null, Date.now() + path.extname(file.originalname));
+// },
+// });
+
+// // Configure
+// // multer for multiple fields
+
+// const upload = multer({
+// storage: storage,
+// });
+
+// app.post(
+// "/api/add-product",
+// upload.fields([
+// { name: "image", maxCount: 1 },
+// { name: "imageone", maxCount: 1 },
+// { name: "imagetwo", maxCount: 1 },
+// { name: "imagethree", maxCount: 1 },
+// ]),
+// (req, res) => {
+// const { category, name, price, sizes, stock, description, review } =
+// req.body;
+
+// const imagePath = req.files.image
+// ? `/Images/${req.files.image[0].filename}`
+// : null;
+// const imagePathOne = req.files.imageone
+// ? `/Images/${req.files.imageone[0].filename}`
+// : null;
+// const imagePathTwo = req.files.imagetwo
+// ? `/Images/${req.files.imagetwo[0].filename}`
+// : null;
+// const imagePathThree = req.files.imagethree
+// ? `/Images/${req.files.imagethree[0].filename}`
+// : null;
+
+// const query =
+// "INSERT INTO imgproduct (img, name, price, file_path, sizes, file_path1, file_path2, file_path3, stock, description, review) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?)";
+
+// db.query(
+// query,
+// [
+// category,
+// name,
+// price,
+// imagePath,
+// sizes,
+// imagePathOne,
+// imagePathTwo,
+// imagePathThree,
+// stock,
+// description,
+// review,
+// ],
+// (err, result) => {
+// if (err) {
+// console.error("Error inserting product into database:", err);
+// return res.status(500).send("Error adding product");
+// }
+// res.status(200).send("Product added successfully");
+// }
+// );
+// }
+// );
+
+
+// Dashboard
+
+// Setting up
+// Multer for file uploads
+
+// Multer
+// storage configuration
+
 // 🔑 Cloudinary Config
 
 cloudinary.config({
@@ -1782,7 +1868,6 @@ cloudinary.config({
   api_key: "428986251698984",
   api_secret: "RWf2H7aeMTAEL2pTguwLKIS-110",
 });
-
 
 // ✅ Multer (temp folder)
 const upload = multer({ dest: "uploads/" });
@@ -1853,88 +1938,8 @@ app.post(
       res.status(500).send("Upload failed");
     }
   }
+
 );
-
-
-// Dashboard
-
-// Setting up
-// Multer for file uploads
-
-// Multer
-// storage configuration
-
-// const storage = multer.diskStorage({
-// destination: (req, file, cb) => {
-// cb(null, "public/Images");
-// },
-// filename: (req, file, cb) => {
-// cb(null, Date.now() + path.extname(file.originalname));
-// },
-// });
-
-// // Configure
-// // multer for multiple fields
-
-// const upload = multer({
-// storage: storage,
-// });
-
-// app.post(
-// "/api/add-product",
-// upload.fields([
-// { name: "image", maxCount: 1 },
-// { name: "imageone", maxCount: 1 },
-// { name: "imagetwo", maxCount: 1 },
-// { name: "imagethree", maxCount: 1 },
-// ]),
-// (req, res) => {
-// console.log("📩 Body Data:", req.body);   
-// console.log("📸 Files Data:", req.files);
-// const { category, name, price, sizes, stock, description, review } =
-// req.body;
-
-// const imagePath = req.files.image
-// ? `/Images/${req.files.image[0].filename}`
-// : null;
-// const imagePathOne = req.files.imageone
-// ? `/Images/${req.files.imageone[0].filename}`
-// : null;
-// const imagePathTwo = req.files.imagetwo
-// ? `/Images/${req.files.imagetwo[0].filename}`
-// : null;
-// const imagePathThree = req.files.imagethree
-// ? `/Images/${req.files.imagethree[0].filename}`
-// : null;
-
-// const query =
-// "INSERT INTO _imgproduct (img, name, price, file_path, sizes, file_path1, file_path2, file_path3, stock, description, review) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?)";
-
-// db.query(
-// query,
-// [
-// category,
-// name,
-// price,
-// imagePath,
-// sizes,
-// imagePathOne,
-// imagePathTwo,
-// imagePathThree,
-// stock,
-// description,
-// review,
-// ],
-// (err, result) => {
-// if (err) {
-// console.error("Error inserting product into database:", err);
-// return res.status(500).send("Error adding product");
-// }
-// res.status(200).send("Product added successfully");
-// }
-// );
-// }
-// );
 
 
 // const storage = multer.diskStorage({
@@ -2040,8 +2045,6 @@ app.post(
 // res.status(200).send("Product updated successfully");
 // });
 // });
-
-
 
 app.post("/api/update-product", upload.single("image"), async (req, res) => {
 const { oldName, newName, price } = req.body;
@@ -2275,6 +2278,7 @@ res.status(500).json({ message: "Fetch error", error: err.message });
 // res.json({ products: results, total: results.length });
 // });
 // });
+
 
 
 app.post("/fetchCutomerOrder", async (req, res) => {
