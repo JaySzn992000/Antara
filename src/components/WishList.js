@@ -44,12 +44,9 @@ fetchProductData();
 }, [] );
 
 const getProductImagePath = (productId) => {
-  const product = productData.find(
-    (p) => Number(p.id) === Number(productId)
-  );
-  return product?.file_path || "";
+const product = productData.find((p) => p.id === productId);
+return product ? product.file_path : "";
 };
-;
 
 
 return (
@@ -101,9 +98,6 @@ loading="lazy"
 {/*  */}
 
 <div>
-<li className="inStock fontSizeSpn">
-In Stock
-</li>
 <li className="Product-name fontSizeSpn">{item.name}</li>
 </div>
 
