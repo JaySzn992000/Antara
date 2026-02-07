@@ -44,9 +44,12 @@ fetchProductData();
 }, [] );
 
 const getProductImagePath = (productId) => {
-const product = productData.find((p) => p.id === productId);
-return product ? product.file_path : "";
+  const product = productData.find(
+    (p) => Number(p.id) === Number(productId)
+  );
+  return product?.file_path || "";
 };
+;
 
 
 return (
