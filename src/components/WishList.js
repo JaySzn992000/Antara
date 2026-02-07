@@ -98,6 +98,9 @@ loading="lazy"
 {/*  */}
 
 <div>
+<li className="inStock fontSizeSpn">
+In Stock
+</li>
 <li className="Product-name fontSizeSpn">{item.name}</li>
 </div>
 
