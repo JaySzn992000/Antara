@@ -105,7 +105,7 @@ DB_products_PRQuery ? "DB_products_PRQuery-inside" : ""
 <td>
 {DisDb.file_path && (
 <img
-src={`https://antara-gug4.onrender.com${DisDb.file_path}`}
+src={DisDb.file_path}
 alt={DisDb.name}
 className="product-img"
 />
