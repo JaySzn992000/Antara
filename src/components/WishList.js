@@ -44,19 +44,8 @@ fetchProductData();
 }, [] );
 
 const getProductImagePath = (productId) => {
-  const product = productData.find(
-    (p) => Number(p.id) === Number(productId)
-  );
-
-  if (!product?.file_path) return "";
-
-  // Agar Cloudinary full URL hai
-  if (product.file_path.startsWith("http")) {
-    return product.file_path;
-  }
-
-  // Agar relative path ho (future safety)
-  return `https://antara-gug4.onrender.com/${product.file_path}`;
+const product = productData.find((p) => p.id === productId);
+return product ? product.file_path : "";
 };
 
 
@@ -109,6 +98,9 @@ loading="lazy"
 {/*  */}
 
 <div>
+<li className="inStock fontSizeSpn">
+In Stock
+</li>
 <li className="Product-name fontSizeSpn">{item.name}</li>
 </div>
 
