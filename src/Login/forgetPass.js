@@ -46,7 +46,7 @@ return;
 }
 
 try {
-const response = await fetch("https://antara-gug4.onrender.com/verifyemail", {
+const response = await fetch("https://naturalbuti.onrender.com/verifyemail", {
 method: "POST",
 headers: {
 "Content-Type": "application/json",
