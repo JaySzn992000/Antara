@@ -17,8 +17,7 @@ const pool = require("./config");
 
 app.use(cors({
   origin: [
-    'https://antara-xi.vercel.app',
-    'http://localhost:3000'
+    'https://antara-xi.vercel.app'
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
