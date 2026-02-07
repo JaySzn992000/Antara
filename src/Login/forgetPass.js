@@ -45,7 +45,6 @@ setMessage("Please enter a valid email address.");
 return;
 }
 
-
 try {
 const response = await fetch("https://antara-gug4.onrender.com/verifyemail", {
 method: "POST",
@@ -121,8 +120,8 @@ headers: {
 "Content-Type": "application/json",
 },
 body: JSON.stringify({
-email: formdata.email,
-password: formdata.password,
+  email: formdata.email,
+  newPassword: formdata.password,
 }),
 });
 
